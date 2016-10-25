@@ -77,19 +77,9 @@
                 <span>壁纸尺寸：</span>
                 <div class="menu-size-l">
                     <a href="javascript:">全部</a>
-                    <a href="javascript:">1080x1920</a>
-                    <a href="javascript:">800x1280</a>
-                    <a href="javascript:">768x1280</a>
-                    <a href="javascript:" class="current">750x1334</a>
-                    <a href="javascript:">720x1280</a>
-                    <a href="javascript:">640x1136</a>
-                    <a href="javascript:">640x960</a>
-                    <a href="javascript:">600x1024</a>
-                    <a href="javascript:">540x960</a>
-                    <a href="javascript:">480x854</a>
-                    <a href="javascript:">480x800</a>
-                    <a href="javascript:">320x480</a>
-                    <a href="javascript:">240x320</a>
+                    {foreach name="sizeList" item="vo"}
+                    <a href="#">{$vo.width}x{$vo.height}</a>
+                    {/foreach}
                 </div>
             </div>
             <div class="menu-classify">
@@ -97,25 +87,9 @@
                 <span>壁纸分类：</span>
                 <div class="menu-classify-l">
                     <a href="javascript:">全部</a>
-                    <a href="javascript:">风景名胜</a>
-                    <a href="javascript:">美女</a>
-                    <a href="javascript:" class="current">动漫卡通</a>
-                    <a href="javascript:">创意</a>
-                    <a href="javascript:">名车</a>
-                    <a href="javascript:">热门游戏</a>
-                    <a href="javascript:">著名建筑</a>
-                    <a href="javascript:">影视</a>
-                    <a href="javascript:">可爱</a>
-                    <a href="javascript:">明星写真</a>
-                    <a href="javascript:">车模</a>
-                    <a href="javascript:">植物花卉</a>
-                    <a href="javascript:">动物</a>
-                    <a href="javascript:">节日庆典</a>
-                    <a href="javascript:">体育</a>
-                    <a href="javascript:">品牌</a>
-                    <a href="javascript:">美食</a>
-                    <a href="javascript:">星座</a>
-                    <a href="javascript:">其它</a>
+                    {foreach name="clsList" item="vo"}
+                    <a href="#">{$vo.clsnm}</a>
+                    {/foreach}
                 </div>
             </div>
             <div class="menu-sub">
@@ -164,51 +138,12 @@
                     <div class="Bbox">
                         <a href="javascript:">全部</a>
                     </div>
+                    {foreach name="colorList" item="vo"}
                     <div class="Bbox">
-                        <div class="Bbox-white"></div>
-                        <a href="javascript:">白色</a>
+                        <div class="Bbox-1" style="background-color: {$vo.example}"></div>
+                        <a href="#">{$vo.color}</a>
                     </div>
-                    <div class="Bbox">
-                        <div class="Bbox-1 a"></div>
-                        <a href="javascript:">红色</a>
-                    </div>
-                    <div class="Bbox">
-                        <div class="Bbox-1 b"></div>
-                        <a href="javascript:">橙色</a>
-                    </div>
-                    <div class="Bbox">
-                        <div class="Bbox-1 c"></div>
-                        <a href="javascript:">黄色</a>
-                    </div>
-                    <div class="Bbox">
-                        <div class="Bbox-1 d"></div>
-                        <a href="javascript:">绿色</a>
-                    </div>
-                    <div class="Bbox">
-                        <div class="Bbox-1 e"></div>
-                        <a href="javascript:">青色</a>
-                    </div>
-                    <div class="Bbox">
-                        <div class="Bbox-1 f"></div>
-                        <a href="javascript:">蓝色</a>
-                    </div>
-                    <div class="Bbox">
-                        <div class="Bbox-1 g"></div>
-                        <a href="javascript:">紫色</a>
-                    </div>
-                    <div class="Bbox">
-                        <div class="Bbox-1 h"></div>
-                        <a href="javascript:">咖啡色</a>
-                    </div>
-                    <div class="Bbox">
-                        <div class="Bbox-1 i"></div>
-                        <a href="javascript:">粉色</a>
-                    </div>
-                    <div class="Bbox">
-                        <div class="Bbox-1 j"></div>
-                        <a href="javascript:">黑色</a>
-                    </div>
-
+                    {/foreach}
                 </div>
             </div>
             <div class="menu-size" style="position:relative;">

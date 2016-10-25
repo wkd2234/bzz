@@ -1,6 +1,7 @@
 <?php
 namespace app\index\controller;
 
+use app\index\model\Size;
 use think\Request;
 use think\Controller;
 use app\index\model\iPadmodel\IpadCollection;
@@ -12,18 +13,52 @@ use app\index\model\Color;
 
 class Index extends Controller
 {
+    private function attachWhere($cls)
+    {
+        $where = '';
+        $fbl   = '';
+
+        if(Request::instance()->param('class')){
+            $clsnm = $cls->selectOneItem(Request::instance()->param('class'))['clsnm'];
+
+            if (!empty($where))
+                $where .= " and ";
+
+            $where .= "cls='{$clsnm}'";
+            if(Request::instance()->param('subclass')){
+                //todo
+            }
+        }
+
+        if(Request::instance()->param('color')){
+            //todo
+        }
+
+        if(Request::instance()->param('fbl')){
+            $fbl .= "fbl='".str_replace('x','*',Request::instance()->param('fbl'))."'";
+        }
+
+        return [
+            'where' => $where,
+            'fbl'   => $fbl
+        ];
+    }
+
     /**
      * 首页
      * @return mixed
      */
     public function index()
     {
+        $client = 0;
+
         $ipCollection     = new IpadCollection();
         $pcCollection     = new PCcollection();
         $mobileCollection = new MobileCollection();
         $slides           = new Slide();
         $parentCls        = new ParentCls();
         $colors           = new Color();
+        $sizes            = new Size();
 
         $pcList     = $pcCollection->selectIndexPC();
         $mobileList = $mobileCollection->selectIndex();
@@ -32,6 +67,7 @@ class Index extends Controller
         $slideList  = $slides->selectIndexSlide();
         $clsList    = $parentCls->selectAllCls();
         $colorList  = $colors->selectAllColor();
+        $sizeList   = $sizes->selectAllSize($client);
         $count      = $pcCollection->getCount() + $mobileCollection->getCount() + $ipCollection->getCount();
 
         $this->assign([
@@ -42,6 +78,7 @@ class Index extends Controller
             'slideList'  => $slideList,
             'clsList'    => $clsList,
             'colorList'  => $colorList,
+            'sizeList'   => $sizeList,
             'count'      => $count
         ]);
 
@@ -55,32 +92,35 @@ class Index extends Controller
      */
     public function pc(Request $request)
     {
+        $client = 0;
+
         $pcCollection = new PCcollection();
         $cls          = new ParentCls();
         $colors       = new Color();
+        $size         = new Size();
 
-        $where = '';
+        $query = $this->attachWhere($cls);
+        $where = $query['where'];
+        $fbl   = $query['fbl'];
+
         $sort  = 'sort';
 
-        if ($request->has('class')) {
-            $clsnm = $cls->selectOneItem($request->param('class'))['clsnm'];
-            if (!empty($where))
-                $where .= " and ";
-            $where .= "cls={$clsnm}";
-        }
         if ($request->has('sort')) {
             $sort = $request->param('sort');
         }
 
-        $list = $pcCollection->selectPCByPage($where, $sort);
-
+        $list      = $pcCollection->selectPCByPage($where, $fbl, $sort);
         $clsList   = $cls->selectAllCls();
         $colorList = $colors->selectAllColor();
+        $sizeList  = $size->selectAllSize($client);
+        $sortList  = $pcCollection->selectSortList();
 
         $this->assign([
             'list'      => $list,
             'clsList'   => $clsList,
-            'colorList' => $colorList
+            'colorList' => $colorList,
+            'sizeList'  => $sizeList,
+            'sortList'  => $sortList
         ]);
 
         return $this->fetch('pc');
@@ -93,10 +133,13 @@ class Index extends Controller
      */
     public function mobile(Request $request)
     {
+        $client = 1;
+
         $mobile    = new MobileCollection();
         $slides    = new Slide();
         $parentCls = new ParentCls();
         $colors    = new Color();
+        $size      = new Size();
 
         $sort = 'sort';
         if ($request->has('sort')) {
@@ -105,6 +148,9 @@ class Index extends Controller
 
         $slideList    = $slides->selectMobileSlide();
         $recentList   = $mobile->selectBySortIndex($sort);
+        $sizeList     = $size->selectAllSize($client);
+        $colorList    = $colors->selectAllColor();
+        $clsList      = $parentCls->selectAllCls();
         $sightList    = $mobile->selectByWhereIndex("cls='风景'");
         $creativeList = $mobile->selectByWhereIndex("cls='创意'");
         $cuteList     = $mobile->selectByWhereIndex("cls='可爱'");
@@ -116,7 +162,10 @@ class Index extends Controller
             'sightList'    => $sightList,
             'creativeList' => $creativeList,
             'cuteList'     => $cuteList,
-            'cartoonList'  => $cartoon
+            'cartoonList'  => $cartoon,
+            'sizeList'     => $sizeList,
+            'colorList'    => $colorList,
+            'clsList'      => $clsList
         ]);
 
         return $this->fetch('mobile');
@@ -129,33 +178,38 @@ class Index extends Controller
      */
     public function iPad(Request $request)
     {
+        $client = 2;
+
         $iPad   = new IpadCollection();
         $slides = new Slide();
         $cls    = new ParentCls();
+        $size   = new Size();
+        $color  = new Color();
 
-        $where = '';
+        $where = $this->attachWhere($cls);
+
         $sort  = 'sort';
         if ($request->has('sort')) {
             $sort = $request->param('sort');
         }
-        if ($request->has('class')) {
-            $clsnm = $cls->selectOneItem($request->param('class'))['clsnm'];
-            if (!empty($where))
-                $where .= " and ";
-            $where .= "cls={$clsnm}";
-        }
 
         $slideList = $slides->selectIpadSlide();
+        $clsList   = $cls->selectAllCls();
         $iPadList  = $iPad->selectIPadPage($where, $sort);
         $sortList  = $iPad->selectSortList();
+        $sizeList  = $size->selectAllSize($client);
+        $colorList = $color->selectAllColor();
 
         $this->assign([
             'slideList' => $slideList,
             'iPadList'  => $iPadList,
-            'sortList'  => $sortList
+            'clsList'   => $clsList,
+            'sortList'  => $sortList,
+            'sizeList'  => $sizeList,
+            'colorList' => $colorList
         ]);
 
-        return $this->fetch('iPad');
+        return $this->fetch('ipad');
     }
 
     /**
@@ -165,8 +219,12 @@ class Index extends Controller
      */
     public function mobileList(Request $request)
     {
+        $client = 1;
+
         $mobile = new MobileCollection();
         $cls    = new ParentCls();
+        $size   = new Size();
+        $color  = new Color();
 
         $where = '';
         $sort  = 'sort';
@@ -175,17 +233,25 @@ class Index extends Controller
         }
         if ($request->has('class')) {
             $clsnm = $cls->selectOneItem($request->param('class'))['clsnm'];
+
             if (!empty($where))
                 $where .= " and ";
+
             $where .= "cls={$clsnm}";
         }
 
+        $clsList    = $cls->selectAllCls();
+        $colorList  = $color->selectAllColor();
         $mobileList = $mobile->selectMobileList($where, $sort);
         $sortList   = $mobile->selectSortList();
+        $sizeList   = $size->selectAllSize($client);
 
         $this->assign([
             'mobileList' => $mobileList,
-            'sortList'   => $sortList
+            'sortList'   => $sortList,
+            'sizeList'   => $sizeList,
+            'clsList'    => $clsList,
+            'colorList'  => $colorList
         ]);
 
         return $this->fetch('mobilelist');

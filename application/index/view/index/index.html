@@ -26,11 +26,11 @@
         <div class="nav">
             <div class="nav1">
                 <ul>
-                    <li><a href="javascript:">首页</a></li>
-                    <li class="nav1-bian"><a href="javascript:" >精选推荐</a></li>
-                    <li><a href="Computer.html">电脑壁纸</a></li>
-                    <li><a href="javascript:">手机壁纸</a></li>
-                    <li><a href="javascript:">iPad壁纸</a></li>
+                    <li class="nav1-bian"><a href="#">首页</a></li>
+                    <li><a href="#" >精选推荐</a></li>
+                    <li><a href="pc">电脑壁纸</a></li>
+                    <li><a href="mobile">手机壁纸</a></li>
+                    <li><a href="ipad">iPad壁纸</a></li>
                 </ul>
 
             </div>
@@ -70,17 +70,9 @@
                 <span>壁纸尺寸：</span>
                 <div class="menu-size-l">
                     <a href="javascript:">全部</a>
-                    <a href="javascript:">2880x1800</a>
-                    <a href="javascript:">2560x1600</a>
-                    <a href="javascript:">1920x1200</a>
-                    <a href="javascript:" class="current">1920x1080</a>
-                    <a href="javascript:">1680x1050</a>
-                    <a href="javascript:">1600x900</a>
-                    <a href="javascript:">1440x900</a>
-                    <a href="javascript:">1366x768</a>
-                    <a href="javascript:">1280x1024</a>
-                    <a href="javascript:">1280x800</a>
-                    <a href="javascript:">1024x768</a>
+                    {foreach name="sizeList" item="vo"}
+                    <a href="#">{$vo.width}x{$vo.height}</a>
+                    {/foreach}
                 </div>
             </div>
             <div class="menu-classify">

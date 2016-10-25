@@ -89,17 +89,9 @@
                 <span>壁纸尺寸：</span>
                 <div class="menu-size-l">
                     <a href="javascript:">全部</a>
-                    <a href="javascript:">2880x1800</a>
-                    <a href="javascript:">2560x1600</a>
-                    <a href="javascript:">1920x1200</a>
-                    <a href="javascript:" class="current">1920x1080</a>
-                    <a href="javascript:">1680x1050</a>
-                    <a href="javascript:">1600x900</a>
-                    <a href="javascript:">1440x900</a>
-                    <a href="javascript:">1366x768</a>
-                    <a href="javascript:">1280x1024</a>
-                    <a href="javascript:">1280x800</a>
-                    <a href="javascript:">1024x768</a>
+                    {foreach name="sizeList" item="vo"}
+                    <a href="#">{$vo.width}x{$vo.height}</a>
+                    {/foreach}
                 </div>
             </div>
             <div class="menu-classify">
@@ -189,9 +181,10 @@
                     </div>
                     {/foreach}
                 </div>
-                <div class="pagination1">
-                    <div class="tcdPageCode">
-                    </div>
+                <div style="clear: both"></div>
+
+                <div class="pagination pagination-centered">
+                {$list->render()}
                 </div>
             </div>
             <div class="computer-main-right">
@@ -201,146 +194,17 @@
                 </div>
                 <div class="left-and">             <!--壁纸开始-->
                     <ul>
-                        <li><a href="javascript:">
-                            <div class="biaoqian2" style="background:#e60012;">1</div>
-                            <span class="R1">排行榜最多只显示十三个汉字</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
+                        {foreach name="sortList" item="vo"}
+                        <li>
+                            <a href="#">
+                                <div class="{$i+1<=3?'biaoqian2':'biaoqian'}" style="background-color:{$i+1==1?'#e60012':($i+1==2?'#f39800':($i+1==3?'#8fc31f':''))}">{$i+1}</div>
+                                <span class="R1">{$vo.nm}</span><span class="R2">{$vo.sort}</span>
+                                <ul>
+                                    <li><img src="{$vo.cutpic2}"></li>
+                                </ul>
+                            </a>
                         </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian2" style="background:#f39800;">2</div>
-                            <span class="R1">风景摄影桌面壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian2" style="background:#8fc31f;">3</div>
-                            <span class="R1">自然风景桌面壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">4</div>
-                            <span class="R1">山川美景壁纸图集</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">5</div>
-                            <span class="R1">绿色风光护眼壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">6</div>
-                            <span class="R1">树影人星空壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">7</div>
-                            <span class="R1">金秋唯美壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">8</div>
-                            <span class="R1">海边风景高清壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">9</div>
-                            <span class="R1">草原风光宽屏壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">10</div>
-                            <span class="R1">大美金海湖桌面壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">11</div>
-                            <span class="R1">排行榜最多只显示十三个汉字</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">12</div>
-                            <span class="R1">风景摄影桌面壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">13</div>
-                            <span class="R1">自然风景桌面壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">14</div>
-                            <span class="R1">山川美景壁纸图集</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">15</div>
-                            <span class="R1">绿色风光护眼壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">16</div>
-                            <span class="R1">树影人星空壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">17</div>
-                            <span class="R1">金秋唯美壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">18</div>
-                            <span class="R1">海边风景高清壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">19</div>
-                            <span class="R1">草原风光宽屏壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
-                        <li><a href="javascript:">
-                            <div class="biaoqian">20</div>
-                            <span class="R1">大美金海湖桌面壁纸</span><span class="R2">12345</span>
-                            <ul>
-                                <li><img src="images/Rbox1.jpg"></li>
-                            </ul></a>
-                        </li>
+                        {/foreach}
                     </ul>
                 </div><!--壁纸结束行-->
             </div>
@@ -354,6 +218,5 @@
     </div>
 
 </div>
-<script src="/bzz/public/static/js/asd.js" type="text/javascript"></script>
 </body>
 </html>

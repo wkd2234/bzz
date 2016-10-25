@@ -16,15 +16,4 @@ class IpadCollection extends BaseCollectionClass
         return $this->order('sort desc')->limit(10)->select();
     }
 
-    /**
-     * 查询显示在pc首页的壁纸
-     * @param $where
-     * @param $sort
-     * @return array
-     */
-    public function selectIPadPage($where,$sort)
-    {
-        return !empty($where)?$this->where($where)->order($sort." desc")->paginate(15):$this->order($sort." desc")->paginate(15);
-    }
-
 }

@@ -12,6 +12,6 @@ class BaseBizhiClass extends Model
      */
     public function selectOneItemByZjId($id)
     {
-        return $this->where('zjid',$id)->order('sort desc')->field('id,bznm')->select();
+        return $this->where('zjid', $id)->order('sort desc')->field('id,bznm')->select();
     }
 }

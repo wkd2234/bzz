@@ -5,5 +5,5 @@ use app\index\model\common\BaseBizhiClass;
 
 class IpadBizhi extends BaseBizhiClass
 {
-    protected $table="ip_bz_gl";
+    protected $table = "ip_bz_gl";
 }

@@ -35,15 +35,5 @@ class MobileCollection extends BaseCollectionClass
         return $this->where($where)->order('sort desc')->limit(10)->select();
     }
 
-    /**
-     * 手机列表页查询
-     * @param $where
-     * @param $sort
-     * @return array
-     */
-    public function selectMobileList($where,$sort)
-    {
-        return !empty($where)?$this->where($where)->order($sort." desc")->paginate(15):$this->order($sort." desc")->paginate(15);
-    }
 
 }

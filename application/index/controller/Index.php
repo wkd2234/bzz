@@ -18,24 +18,24 @@ class Index extends Controller
         $where = '';
         $fbl   = '';
 
-        if(Request::instance()->param('class')){
+        if (Request::instance()->param('class')) {
             $clsnm = $cls->selectOneItem(Request::instance()->param('class'))['clsnm'];
 
             if (!empty($where))
                 $where .= " and ";
 
             $where .= "cls='{$clsnm}'";
-            if(Request::instance()->param('subclass')){
+            if (Request::instance()->param('subclass')) {
                 //todo
             }
         }
 
-        if(Request::instance()->param('color')){
+        if (Request::instance()->param('color')) {
             //todo
         }
 
-        if(Request::instance()->param('fbl')){
-            $fbl .= "fbl='".str_replace('x','*',Request::instance()->param('fbl'))."'";
+        if (Request::instance()->param('fbl')) {
+            $fbl .= "fbl='" . str_replace('x', '*', Request::instance()->param('fbl')) . "'";
         }
 
         return [
@@ -103,13 +103,13 @@ class Index extends Controller
         $where = $query['where'];
         $fbl   = $query['fbl'];
 
-        $sort  = 'sort';
+        $sort = 'sort';
 
         if ($request->has('sort')) {
             $sort = $request->param('sort');
         }
 
-        $list      = $pcCollection->selectPCByPage($where, $fbl, $sort);
+        $list      = $pcCollection->selectIndexSearch('pc',$where, $fbl, $sort);
         $clsList   = $cls->selectAllCls();
         $colorList = $colors->selectAllColor();
         $sizeList  = $size->selectAllSize($client);
@@ -186,16 +186,18 @@ class Index extends Controller
         $size   = new Size();
         $color  = new Color();
 
-        $where = $this->attachWhere($cls);
+        $query = $this->attachWhere($cls);
+        $where = $query['where'];
+        $fbl   = $query['fbl'];
 
-        $sort  = 'sort';
+        $sort = 'sort';
         if ($request->has('sort')) {
             $sort = $request->param('sort');
         }
 
         $slideList = $slides->selectIpadSlide();
         $clsList   = $cls->selectAllCls();
-        $iPadList  = $iPad->selectIPadPage($where, $sort);
+        $iPadList  = $iPad->selectIndexSearch('ip',$where, $fbl, $sort);
         $sortList  = $iPad->selectSortList();
         $sizeList  = $size->selectAllSize($client);
         $colorList = $color->selectAllColor();
@@ -226,23 +228,18 @@ class Index extends Controller
         $size   = new Size();
         $color  = new Color();
 
-        $where = '';
-        $sort  = 'sort';
+        $query = $this->attachWhere($cls);
+        $where = $query['where'];
+        $fbl   = $query['fbl'];
+
+        $sort = 'sort';
         if ($request->has('sort')) {
             $sort = $request->param('sort');
-        }
-        if ($request->has('class')) {
-            $clsnm = $cls->selectOneItem($request->param('class'))['clsnm'];
-
-            if (!empty($where))
-                $where .= " and ";
-
-            $where .= "cls={$clsnm}";
         }
 
         $clsList    = $cls->selectAllCls();
         $colorList  = $color->selectAllColor();
-        $mobileList = $mobile->selectMobileList($where, $sort);
+        $mobileList = $mobile->selectIndexSearch('sj',$where, $fbl, $sort);
         $sortList   = $mobile->selectSortList();
         $sizeList   = $size->selectAllSize($client);
 

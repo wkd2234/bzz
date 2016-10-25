@@ -1,0 +1,444 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>手机二级首页</title>
+    <link href="/bzz/public/static/css/index.css" rel="stylesheet" type="text/css">
+    <script src="/bzz/public/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="/bzz/public/static/js/js.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="container"><!--外界边框big-->
+    <div class="head">
+        <div class="head-too">
+            <div class="head-top">
+                <div class="logo"></div>
+                <div class="searchInput">
+                    <form>
+                        <input name="sInput" type="text" placeholder="请输入壁纸名称" class="sInput"/>
+                        <input name="tijiao" type="button"  class="tijiao" id="tijiao"/>
+                    </form>
+                    <span>热门关键词： </span> <a href="javascript:" class="sIa"> 风景</a><a href="javascript:"> 汽车</a><a href="javascript:"> 电影</a><a href="javascript:"> 游戏</a><a href="javascript:"> 动物</a><a href="javascript:"> 植物</a>
+                </div>
+            </div>
+        </div>
+        <div class="nav">
+            <div class="nav1">
+                <ul>
+                    <li><a href="javascript:">首页</a></li>
+                    <li class="nav1-bian"><a href="javascript:" >精选推荐</a></li>
+                    <li><a href="javascript:">电脑壁纸</a></li>
+                    <li><a href="javascript:">手机壁纸</a></li>
+                    <li><a href="javascript:">iPad壁纸</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="head-bottom-cell">
+            <div class="main-btop">
+                <div class="lo" style="background-position:-2px -260px"></div>
+                <span>手机壁纸</span>
+            </div>
+
+            <div class="cell-img">
+                <ul>
+                    {foreach name="slideList" item="vo" key="i"}
+                    <li>
+                        <a href="#">
+                            <div class="cell-img1">
+                                <img src="{$vo.url}">
+                                <div class="cell-img3">{$vo.nm}</div>
+                            </div>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+            </div>
+
+
+        </div><!--幻灯片区域-->
+        <div class="cell-img-biaoqian">
+            <ul>
+                <li style="margin-left:28px; background:#eb6877"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="wrap" style="margin-top:10px;"><!--外界边框-->
+
+        <div class="menu"><!--分类部分-->
+            <div class="menu-size" style="border-bottom:1px solid #e5e5e5;">
+
+                <span>壁纸尺寸：</span>
+                <div class="menu-size-l">
+                    <a href="javascript:">全部</a>
+                    <a href="javascript:">1080x1920</a>
+                    <a href="javascript:">800x1280</a>
+                    <a href="javascript:">768x1280</a>
+                    <a href="javascript:" class="current">750x1334</a>
+                    <a href="javascript:">720x1280</a>
+                    <a href="javascript:">640x1136</a>
+                    <a href="javascript:">640x960</a>
+                    <a href="javascript:">600x1024</a>
+                    <a href="javascript:">540x960</a>
+                    <a href="javascript:">480x854</a>
+                    <a href="javascript:">480x800</a>
+                    <a href="javascript:">320x480</a>
+                    <a href="javascript:">240x320</a>
+                </div>
+            </div>
+            <div class="menu-classify">
+
+                <span>壁纸分类：</span>
+                <div class="menu-classify-l">
+                    <a href="javascript:">全部</a>
+                    <a href="javascript:">风景名胜</a>
+                    <a href="javascript:">美女</a>
+                    <a href="javascript:" class="current">动漫卡通</a>
+                    <a href="javascript:">创意</a>
+                    <a href="javascript:">名车</a>
+                    <a href="javascript:">热门游戏</a>
+                    <a href="javascript:">著名建筑</a>
+                    <a href="javascript:">影视</a>
+                    <a href="javascript:">可爱</a>
+                    <a href="javascript:">明星写真</a>
+                    <a href="javascript:">车模</a>
+                    <a href="javascript:">植物花卉</a>
+                    <a href="javascript:">动物</a>
+                    <a href="javascript:">节日庆典</a>
+                    <a href="javascript:">体育</a>
+                    <a href="javascript:">品牌</a>
+                    <a href="javascript:">美食</a>
+                    <a href="javascript:">星座</a>
+                    <a href="javascript:">其它</a>
+                </div>
+            </div>
+            <div class="menu-sub">
+                <span>壁纸分类：</span>
+                <div class="menu-sub-l">
+                    <a href="javascript:">小黄人</a>
+                    <a href="javascript:">火影忍者</a>
+                    <a href="javascript:">海贼王</a>
+                    <a href="javascript:">网球王子</a>
+                    <a href="javascript:">犬夜叉</a>
+                    <a href="javascript:" class="current">蜡笔小新</a>
+                    <a href="javascript:">凌波丽</a>
+                    <a href="javascript:">火拳艾斯</a>
+                    <a href="javascript:">黑岩射手</a>
+                    <a href="javascript:">流川枫</a>
+                    <a href="javascript:">初音未来</a>
+                    <a href="javascript:">凉宫春日</a>
+                    <a href="javascript:">罪恶王冠</a>
+                    <a href="javascript:">樱木花道</a>
+                    <a href="javascript:">高达00</a>
+                    <a href="javascript:">黄金圣斗士</a>
+                    <a href="javascript:">杀生丸</a>
+                    <a href="javascript:">樱桃小丸子</a>
+                    <a href="javascript:">名侦探柯南</a>
+                    <a href="javascript:">死神</a>
+                    <a href="javascript:">银魂</a>
+                    <a href="javascript:">家庭教师</a>
+                    <a href="javascript:">宇智波鼬</a>
+                    <a href="javascript:">妖精的尾巴</a>
+                    <a href="javascript:">乔巴</a>
+                    <a href="javascript:">轻音少女</a>
+                    <a href="javascript:">起司猫</a>
+                    <a href="javascript:">波风水门</a>
+                    <a href="javascript:">市丸银</a>
+                    <a href="javascript:">史迪奇</a>
+                    <a href="javascript:">爆漫王</a>
+                    <a href="javascript:">几米漫画</a>
+                    <a href="javascript:">龙猫</a>
+                </div>
+                <span class="menu-sub-r"><span id="casd">收起</span><div class="menu-sub-rimg"></div></span>
+            </div>
+
+            <div class="menu-color" style="border-bottom:1px solid #e5e5e5;">
+                <span>壁纸色系：</span>
+                <div class="menu-color-l">
+                    <div class="Bbox">
+                        <a href="javascript:">全部</a>
+                    </div>
+                    <div class="Bbox">
+                        <div class="Bbox-white"></div>
+                        <a href="javascript:">白色</a>
+                    </div>
+                    <div class="Bbox">
+                        <div class="Bbox-1 a"></div>
+                        <a href="javascript:">红色</a>
+                    </div>
+                    <div class="Bbox">
+                        <div class="Bbox-1 b"></div>
+                        <a href="javascript:">橙色</a>
+                    </div>
+                    <div class="Bbox">
+                        <div class="Bbox-1 c"></div>
+                        <a href="javascript:">黄色</a>
+                    </div>
+                    <div class="Bbox">
+                        <div class="Bbox-1 d"></div>
+                        <a href="javascript:">绿色</a>
+                    </div>
+                    <div class="Bbox">
+                        <div class="Bbox-1 e"></div>
+                        <a href="javascript:">青色</a>
+                    </div>
+                    <div class="Bbox">
+                        <div class="Bbox-1 f"></div>
+                        <a href="javascript:">蓝色</a>
+                    </div>
+                    <div class="Bbox">
+                        <div class="Bbox-1 g"></div>
+                        <a href="javascript:">紫色</a>
+                    </div>
+                    <div class="Bbox">
+                        <div class="Bbox-1 h"></div>
+                        <a href="javascript:">咖啡色</a>
+                    </div>
+                    <div class="Bbox">
+                        <div class="Bbox-1 i"></div>
+                        <a href="javascript:">粉色</a>
+                    </div>
+                    <div class="Bbox">
+                        <div class="Bbox-1 j"></div>
+                        <a href="javascript:">黑色</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="menu-size" style="position:relative;">
+                <span class="paixu">排序</span>
+                <span class="paixui">:</span>
+                <div class="menu-size-l" style="position:absolute; left:70px;">
+                    <a href="javascript:">最近更新</a>
+                    <a href="javascript:" class="current">最多下载</a>
+                </div>
+            </div>
+        </div><!--上标题-->
+    </div>
+    <div class="cell-main1">
+        <div class="cell-main1-left">
+            <div class="left-new">
+                <div class="lo" style=" background-position:-5px -260px;">
+                </div>
+                <span>最新手机壁纸</span>
+                <a href="http://baidu.com/">更多</a>
+            </div>
+            <div class="cell-left-con">
+                {foreach name="recentList" item="vo" key="i"}
+                {if condition="$i+1<4"}
+                <div class="{$i%3!=0?'cell-box':'cell-box-1'}">
+                    <a href="#">
+                        <div class="cell-box1">
+                            <img src="{$vo.cutpic1}">
+                        </div>
+                        <div class="leth-newBox2">{$vo.nm}</div>
+                    </a>
+                </div>
+                {/if}
+                {/foreach}
+            </div>
+
+            <div class="left-new">
+                <div class="lo" style=" background-position:-5px -260px;">
+                </div>
+                <span>风景手机壁纸</span>
+                <a href="http://baidu.com/">更多</a>
+            </div>
+            <div class="cell-left-con">
+                {foreach name="sightList" item="vo" key="i"}
+                {if condition="$i+1<4"}
+                <div class="{$i%3!=0?'cell-box':'cell-box-1'}">
+                    <a href="#">
+                        <div class="cell-box1">
+                            <img src="{$vo.cutpic1}">
+                        </div>
+                        <div class="leth-newBox2">{$vo.nm}</div>
+                    </a>
+                </div>
+                {/if}
+                {/foreach}
+            </div>
+
+            <div class="left-new">
+                <div class="lo" style=" background-position:-5px -260px;">
+                </div>
+                <span>创意手机壁纸</span>
+                <a href="http://baidu.com/">更多</a>
+            </div>
+            <div class="cell-left-con">
+                {foreach name="creativeList" item="vo" key="i"}
+                {if condition="$i+1<4"}
+                <div class="{$i%3!=0?'cell-box':'cell-box-1'}">
+                    <a href="#">
+                        <div class="cell-box1">
+                            <img src="{$vo.cutpic1}">
+                        </div>
+                        <div class="leth-newBox2">{$vo.nm}</div>
+                    </a>
+                </div>
+                {/if}
+                {/foreach}
+            </div>
+
+            <div class="left-new">
+                <div class="lo" style=" background-position:-5px -260px;">
+                </div>
+                <span>可爱手机壁纸壁纸</span>
+                <a href="http://baidu.com/">更多</a>
+            </div>
+            <div class="cell-left-con">
+                {foreach name="cuteList" item="vo" key="i"}
+                {if condition="$i+1<4"}
+                <div class="{$i%3!=0?'cell-box':'cell-box-1'}">
+                    <a href="#">
+                        <div class="cell-box1">
+                            <img src="{$vo.cutpic1}">
+                        </div>
+                        <div class="leth-newBox2">{$vo.nm}</div>
+                    </a>
+                </div>
+                {/if}
+                {/foreach}
+            </div>
+
+            <div class="left-new">
+                <div class="lo" style=" background-position:-4px 4px;">
+                </div>
+                <span>动漫手机壁纸</span>
+                <a href="http://baidu.com/">更多</a>
+            </div>
+            <div class="cell-left-con" style="margin-bottom:0px;">
+                {foreach name="cartoonList" item="vo" key="i"}
+                {if condition="$i+1<4"}
+                <div class="{$i%3!=0?'cell-box':'cell-box-1'}">
+                    <a href="#">
+                        <div class="cell-box1">
+                            <img src="{$vo.cutpic1}">
+                        </div>
+                        <div class="leth-newBox2">{$vo.nm}</div>
+                    </a>
+                </div>
+                {/if}
+                {/foreach}
+            </div>
+        </div>
+        <div class="cell-main1-right">
+            <div class="right-top" >        <!--手机壁纸排行-->
+                <a href="http://taobao.com/"><div class="lo" style=" background-position:-4px -52px;"></div></a>
+                <span>手机壁纸排行</span>
+            </div>
+            <div class="Rbox2-cell">
+                <ul>
+                    {foreach name="recentList" item="vo" key="i"}
+                    <li>
+                        <a href="#">
+                            <div class="{$i+1<=3?'biaoqian2':'biaoqian'}" style="background-color:{$i+1==1?'#e60012':($i+1==2?'#f39800':($i+1==3?'#8fc31f':''))}">{$i+1}</div>
+                            <span class="R1">{$vo.nm}</span><span class="R2">{$vo.sort}</span>
+                            <ul>
+                                <li><img src="{$vo.cutpic2}"></li>
+                            </ul>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+            </div><!--手机壁纸结束行-->
+
+            <div class="right-top" style="margin-top:20px;">        <!--风景手机壁纸排行-->
+                <a href="http://taobao.com/"><div class="lo" style=" background-position:-4px -52px;"></div></a>
+                <span>风景手机壁纸排行</span>
+            </div>
+            <div class="Rbox2-cell">
+                <ul>
+                    {foreach name="sightList" item="vo" key="i"}
+                    <li>
+                        <a href="#">
+                            <div class="{$i+1<=3?'biaoqian2':'biaoqian'}" style="background-color:{$i+1==1?'#e60012':($i+1==2?'#f39800':($i+1==3?'#8fc31f':''))}">{$i+1}</div>
+                            <span class="R1">{$vo.nm}</span><span class="R2">{$vo.sort}</span>
+                            <ul>
+                                <li><img src="{$vo.cutpic2}"></li>
+                            </ul>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+            </div><!--风景手机壁纸结束行-->
+
+            <div class="right-top"style="margin-top:20px;">        <!--创意手机壁纸排行-->
+                <a href="http://taobao.com/"><div class="lo" style=" background-position:-4px -52px;"></div></a>
+                <span>创意手机壁纸排行</span>
+            </div>
+            <div class="Rbox2-cell">
+                <ul>
+                    {foreach name="creativeList" item="vo" key="i"}
+                    <li>
+                        <a href="#">
+                            <div class="{$i+1<=3?'biaoqian2':'biaoqian'}" style="background-color:{$i+1==1?'#e60012':($i+1==2?'#f39800':($i+1==3?'#8fc31f':''))}">{$i+1}</div>
+                            <span class="R1">{$vo.nm}</span><span class="R2">{$vo.sort}</span>
+                            <ul>
+                                <li><img src="{$vo.cutpic2}"></li>
+                            </ul>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+            </div><!--创意壁纸结束行-->
+
+            <div class="right-top" style="margin-top:20px;">        <!--可爱手机壁纸排行-->
+                <a href="http://taobao.com/"><div class="lo" style=" background-position:-4px -52px;"></div></a>
+                <span>可爱手机壁纸排行</span>
+            </div>
+            <div class="Rbox2-cell">
+                <ul>
+                    {foreach name="cuteList" item="vo" key="i"}
+                    <li>
+                        <a href="#">
+                            <div class="{$i+1<=3?'biaoqian2':'biaoqian'}" style="background-color:{$i+1==1?'#e60012':($i+1==2?'#f39800':($i+1==3?'#8fc31f':''))}">{$i+1}</div>
+                            <span class="R1">{$vo.nm}</span><span class="R2">{$vo.sort}</span>
+                            <ul>
+                                <li><img src="{$vo.cutpic2}"></li>
+                            </ul>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+            </div><!--可爱手机壁纸结束行-->
+
+            <div class="right-top" style="margin-top:20px;">        <!--动漫手机壁纸排行-->
+                <a href="http://taobao.com/"><div class="lo" style=" background-position:-4px -52px;"></div></a>
+                <span>动漫手机壁纸排行</span>
+            </div>
+            <div class="Rbox2-cell">
+                <ul>
+                    {foreach name="cartoonList" item="vo" key="i"}
+                    <li>
+                        <a href="#">
+                            <div class="{$i+1<=3?'biaoqian2':'biaoqian'}" style="background-color:{$i+1==1?'#e60012':($i+1==2?'#f39800':($i+1==3?'#8fc31f':''))}">{$i+1}</div>
+                            <span class="R1">{$vo.nm}</span><span class="R2">{$vo.sort}</span>
+                            <ul>
+                                <li><img src="{$vo.cutpic2}"></li>
+                            </ul>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+            </div><!--动漫手机壁纸结束行-->
+        </div>
+    </div>
+    <div class="main-bottom-logo">
+        <span><a href="javascript:">关于我们</a> | <a href="javascript:">诚聘英才</a> | <a href="javascript:">商务合作</a> | <a href="javascript:">联系我们</a></span>
+        <div class="main-b-l1"></div>
+        <h5>CopyRight <span class="csp">&copy;</span> 2008-2018 杭州某某某某有限公司 版权所有</h5>
+    </div>
+    <div class="up"></div>
+
+</div>
+
+</div>
+</body>
+</html>

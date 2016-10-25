@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>手机壁纸内页</title>
+    <link href="/bzz/public/static/css/index.css" rel="stylesheet" type="text/css">
+    <script src="/bzz/public/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="/bzz/public/static/js/js.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="container"><!--外界边框big-->
+    <div class="Mask">
+        <div class="Mask-img"><img src="images/computer6.jpg"></div>
+    </div>
+
+    <div class="head">
+        <div class="head-too">
+            <div class="head-top">
+                <div class="logo"></div>
+                <div class="searchInput">
+                    <form>
+                        <input name="sInput" type="text" placeholder="请输入壁纸名称" class="sInput"/>
+                        <input name="tijiao" type="button"  class="tijiao" id="tijiao"/>
+                    </form>
+                    <span>热门关键词： </span> <a href="javascript:" class="sIa"> 风景</a><a href="javascript:"> 汽车</a><a href="javascript:"> 电影</a><a href="javascript:"> 游戏</a><a href="javascript:"> 动物</a><a href="javascript:"> 植物</a>
+                </div>
+            </div>
+        </div>
+        <div class="nav">
+            <div class="nav1">
+                <ul>
+                    <li><a href="javascript:">首页</a></li>
+                    <li><a href="javascript:" >精选推荐</a></li>
+                    <li class="nav1-bian"><a href="javascript:">电脑壁纸</a></li>
+                    <li><a href="javascript:">手机壁纸</a></li>
+                    <li><a href="javascript:">iPad壁纸</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="cell-neiye">
+        <div class="cell-neiye-img">
+            <div class="Code"><a></a></div>
+            <div class="cell-neiye-img1">
+
+
+                <div class="cell-neiye-img2">
+                    <ul>
+                        {foreach name="picList" item="vo"}
+                        <li>
+                            <a href="#"><img src="{$vo.pic}"></a>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </div>
+
+            </div>
+            <div class="cell-Aclick1"></div>    <!--按钮-->
+            <div class="cell-Aclick2"></div>
+        </div>
+
+        <div class="cell-neiye-size">
+            <span style="float:left">壁纸尺寸：</span>
+            <div class="menu-size-l">
+                <a href="javascript:">1920x1200</a>
+                <a href="javascript:">1440x900</a>
+                <a href="javascript:">1366x768</a>
+                <a href="javascript:">1280x800</a>
+                <a href="javascript:">1024x768</a>
+            </div>
+        </div>
+
+        <div class="cell-neiye-i">
+            <div class="cell-neiye1" id="neiye1"><!--上一组-->
+                {if condition="$pre.id"}
+                <a href="{:url('mobile',['id'=>$pre.id])}">
+                    <div class="cell-neiye2">
+                        <div class="cell-neiye2-img">
+                            <img src="{$pre.cutpic1}">
+                        </div>
+                    </div>
+                    <div class="cell-N">上一组</div>
+                </a>
+                {/if}
+            </div><!--上一组-->
+            <a class="cell-nn"></a>
+            <a class="cell-nl"></a>
+            <div class="cell-neiye3">
+                <ul id="cs">
+                    {foreach name="picList" item="vo" key="i"}
+                    {if condition="$i+1==1"}
+                    <li class="kuangzhan">
+                    {else \}
+                    <li>
+                    {/if}
+                        <div class="cell-neiye3-img"><img src="{$vo.pic}"></div>
+                        <div class="cell-neiye3-img1">{$i+1}/{$count}</div>
+                    </li>
+                    {/foreach}
+                </ul>
+            </div>
+
+            <div class="cell-neiye1" id="neiye2">   <!--下一组-->
+                {if condition="$next.id"}
+                <a href="{:url('mobile',['id'=>$next.id])}">
+                    <div class="cell-neiye2">
+                        <div class="cell-neiye2-img">
+                            <img src="{$next.cutpic1}">
+                        </div>
+                    </div>
+                    <div class="cell-N">下一组</div>
+                </a>
+                {/if}
+            </div><!--下一组-->
+        </div>
+
+
+    </div>
+    <div class="main-btop">
+        <div class="lol" style="background-position:-6px -2px"></div>
+        <span>壁纸推荐</span>
+    </div>
+    <div class="cell-neiye-bottom">
+        {foreach name="primeList" item="vo" key="i"}
+        {if condition="$i<4"}
+        <div class="{$i+1==1?'cell-box-1':'cell-box'}"
+             style="{$i+1 !=4 ?'margin-right:30px':''}">
+            <a href="#">
+                <div class="cell-box1">
+                    <img src="{$vo.cut_pic1}">
+                </div>
+                <div class="leth-newBox2">{$vo.nm}</div>
+            </a>
+        </div>
+        {/if}
+        {/foreach}
+    </div>
+    <div class="main-bottom-logo" style="margin-top:10px;">
+        <span><a href="javascript:">关于我们</a> | <a href="javascript:">诚聘英才</a> | <a href="javascript:">商务合作</a> | <a href="javascript:">联系我们</a></span>
+        <div class="main-b-l1"></div>
+        <h5>CopyRight <span class="csp">&copy;</span> 2008-2018 杭州某某某某有限公司 版权所有</h5>
+    </div>
+
+</div>
+
+</body>
+</html>

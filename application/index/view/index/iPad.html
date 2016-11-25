@@ -1,11 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>ipad首页</title>
-    <link href="/bzz/public/static/css/index.css" rel="stylesheet" type="text/css">
-    <script src="/bzz/public/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="/bzz/public/static/js/js.js" type="text/javascript"></script>
+    <link href="__PUBLIC____CSS__/index.css" rel="stylesheet" type="text/css">
+    <script src="__PUBLIC____JS__/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="__PUBLIC____JS__/js.js" type="text/javascript"></script>
+    <script src="__PUBLIC____JS__/asyncConnect.js"></script>
+    <style type="text/css">
+        .ipad-box-1,
+        .ipad-box{
+            width:208px;
+            height:250px;
+            padding: 6px
+        }
+        .ipad-box1,
+        .ipad-box1>img{
+            width:208px;
+            height:208px;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,22 +30,25 @@
             <div class="head-top">
                 <div class="logo"></div>
                 <div class="searchInput">
-                    <form>
+                    <form method="get" action="/index/search" target="_blank">
                         <input name="sInput" type="text" placeholder="请输入壁纸名称" class="sInput"/>
-                        <input name="tijiao" type="button"  class="tijiao" id="tijiao"/>
+                        <input name="tijiao" type="button" class="tijiao" id="tijiao"/>
                     </form>
-                    <span>热门关键词： </span> <a href="javascript:" class="sIa"> 风景</a><a href="javascript:"> 汽车</a><a href="javascript:"> 电影</a><a href="javascript:"> 游戏</a><a href="javascript:"> 动物</a><a href="javascript:"> 植物</a>
+                    <span>热门关键词:</span>
+                    {foreach name="hotList" item="vo" key="i"}
+                    <a href="{:url('/index/search/sInput/'.$vo.cont)}" class="{$i?'':'sIa'}">{$vo.cont}</a>
+                    {/foreach}
                 </div>
             </div>
         </div>
         <div class="nav">
             <div class="nav1">
                 <ul>
-                    <li><a href="javascript:">首页</a></li>
-                    <li><a href="javascript:" >精选推荐</a></li>
-                    <li class="nav1-bian"><a href="javascript:">电脑壁纸</a></li>
-                    <li><a href="javascript:">手机壁纸</a></li>
-                    <li><a href="javascript:">iPad壁纸</a></li>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/index/prime">精选推荐</a></li>
+                    <li><a href="/index/pc">电脑壁纸</a></li>
+                    <li><a href="/index/mobile">手机壁纸</a></li>
+                    <li class="nav1-bian"><a href="/index/ipad">iPad壁纸</a></li>
                 </ul>
             </div>
         </div>
@@ -42,9 +60,7 @@
             <div class="head-bottom-img">
                 <ul>
                     {foreach name="slideList" item="vo" key="i"}
-                    <li>
-                        <a href="#"><img src="{$vo.url}"></a>
-                    </li>
+                    <li><a href="/picture/ipad/id/{$vo.skipurl}"><img src="{$vo.url}"></a></li>
                     {/foreach}
                 </ul>
             </div>
@@ -52,7 +68,7 @@
                 <div class="head-3"></div>
                 <ul>
                     {foreach name="slideList" item="vo" key="i"}
-                    <li style="{$i+1<=9?'margin-right:9px':''}"><a href="#"><img src="{$vo.url}"></a></li>
+                    <li style="{$i+1<=9?'margin-right:9px':''}"><a href="/picture/ipad/id/{$vo.skipurl}"><img src="{$vo.url}"></a></li>
                     {/foreach}
                 </ul>
             </div>
@@ -68,144 +84,143 @@
         <div class="menu"><!--分类部分-->
             <div class="menu-size" style="border-bottom:1px solid #e5e5e5;">
                 <span>壁纸尺寸：</span>
+
                 <div class="menu-size-l">
-                    <a href="javascript:">全部</a>
+                    {if condition="empty($Request.param.fbl)"}
+                    <a href="/index/ipad" class="current">全部</a>
+                    {else\}
+                    <a href="/index/ipad">全部</a>
+                    {/if}
                     {foreach name="sizeList" item="vo"}
-                    <a href="#">{$vo.width}x{$vo.height}</a>
+                    <a href="javascript:asyncOpreate.refresh('fbl','{$vo.width}x{$vo.height}','sort','ipad')"
+                       class="{$vo.width.'x'.$vo.height == $Request.param.fbl ?'current':''}">{$vo.width}x{$vo.height}</a>
                     {/foreach}
                 </div>
             </div>
             <div class="menu-classify">
 
                 <span>壁纸分类：</span>
+
                 <div class="menu-classify-l">
-                    <a href="javascript:">全部</a>
-                    {foreach name="clsList" item="vo"}
-                    <a href="#">{$vo.clsnm}</a>
+                    {if condition="empty($Request.param.class)"}
+                    <a href="/index/ipad" class="current">全部</a>
+                    {else \}
+                    <a href="/index/ipad">全部</a>
+                    {/if}
+                    {foreach name="clsList" item="vo" key="i"}
+                    <a href="javascript:asyncOpreate.getSubclass({$vo.id},'ipad')"
+                       class="{$vo.id == $Request.param.class || $vo.clsnm == $Request.param.class ?'current':''}">{$vo.clsnm}</a>
                     {/foreach}
                 </div>
             </div>
-            <div class="menu-sub">
-                <span>壁纸分类：</span>
-                <div class="menu-sub-l">
-                    <a href="javascript:">小黄人</a>
-                    <a href="javascript:">火影忍者</a>
-                    <a href="javascript:">海贼王</a>
-                    <a href="javascript:">网球王子</a>
-                    <a href="javascript:">犬夜叉</a>
-                    <a href="javascript:" class="current">蜡笔小新</a>
-                    <a href="javascript:">凌波丽</a>
-                    <a href="javascript:">火拳艾斯</a>
-                    <a href="javascript:">黑岩射手</a>
-                    <a href="javascript:">流川枫</a>
-                    <a href="javascript:">初音未来</a>
-                    <a href="javascript:">凉宫春日</a>
-                    <a href="javascript:">罪恶王冠</a>
-                    <a href="javascript:">樱木花道</a>
-                    <a href="javascript:">高达00</a>
-                    <a href="javascript:">黄金圣斗士</a>
-                    <a href="javascript:">杀生丸</a>
-                    <a href="javascript:">樱桃小丸子</a>
-                    <a href="javascript:">名侦探柯南</a>
-                    <a href="javascript:">死神</a>
-                    <a href="javascript:">银魂</a>
-                    <a href="javascript:">家庭教师</a>
-                    <a href="javascript:">宇智波鼬</a>
-                    <a href="javascript:">妖精的尾巴</a>
-                    <a href="javascript:">乔巴</a>
-                    <a href="javascript:">轻音少女</a>
-                    <a href="javascript:">起司猫</a>
-                    <a href="javascript:">波风水门</a>
-                    <a href="javascript:">市丸银</a>
-                    <a href="javascript:">史迪奇</a>
-                    <a href="javascript:">爆漫王</a>
-                    <a href="javascript:">几米漫画</a>
-                    <a href="javascript:">龙猫</a>
-                </div>
-                <span class="menu-sub-r"><span id="casd">收起</span><div class="menu-sub-rimg"></div></span>
-            </div>
 
-            <div class="menu-color" style="border-bottom:1px solid #e5e5e5;">
-                <span>壁纸色系：</span>
-                <div class="menu-color-l">
-                    <div class="Bbox">
-                        <a href="javascript:">全部</a>
-                    </div>
-                    {foreach name="colorList" item="vo"}
-                    <div class="Bbox">
-                        <div class="Bbox-1" style="background-color: {$vo.example}"></div>
-                        <a href="#">{$vo.color}</a>
-                    </div>
-                    {/foreach}
-                </div>
-            </div>
-            <div class="menu-size" style="position:relative;">
-                <span class="paixu">排序</span>
-                <span class="paixui">:</span>
-                <div class="menu-size-l" style="position:absolute; left:70px;">
-                    <a href="javascript:">最近更新</a>
-                    <a href="javascript:" class="current">最多下载</a>
-                </div>
-            </div>
-        </div><!--上标题-->
+            {if condition="empty($subClsList)"}
+            <div class="menu-sub" style="display: none">
+                {else \}
+                <div class="menu-sub">
+                    {/if}
+                    <span>壁纸分类：</span>
 
-        <div class="ipad-main-con">
-            <div class="cell-main1-left">
-                <div class="IPad">
-                    {foreach name="iPadList" item="vo" key="i"}
-                    <div class="{$i%3!=0?'ipad-box':'ipad-box-1'}">
-                        <a href="#">
-                            <div class="ipad-box1">
-                                <img src="{$vo.cutpic1}">
-                            </div>
-                            <div class="leth-newBox2">{$vo.nm}</div>
-                        </a>
-                    </div>
-                    {/foreach}
-                </div>
-                <div style="clear: both"></div>
-
-                <div class="pagination pagination-centered">
-                    {$iPadList->render()}
-                </div>
-                <!--页码-->
-            </div>
-
-            <div class="cell-main1-right">
-                <div class="right-top">
-                    <a href="http://taobao.com/"><div class="lo" style=" background-position:-4px -52px;"></div></a>
-                    <span>下载排行</span>
-                </div>
-                <div class="left-and">             <!--壁纸开始-->
-                    <ul>
-                        {foreach name="iPadList" item="vo" key="i"}
-                        <li>
-                            <a href="#">
-                                <div class="{$i+1<=3?'biaoqian2':'biaoqian'}" style="background-color:{$i+1==1?'#e60012':($i+1==2?'#f39800':($i+1==3?'#8fc31f':''))}">{$i+1}</div>
-                                <span class="R1">{$vo.nm}</span><span class="R2">{$vo.sort}</span>
-                                <ul>
-                                    <li><img src="{$vo.cutpic2}"></li>
-                                </ul>
-                            </a>
-                        </li>
+                    <div class="menu-sub-l">
+                        <a href="javascript:asyncOpreate.refresh('class','all')">全部</a>
+                        {foreach name="subClsList" item="vo" key="i"}
+                        <a href="javascript:asyncOpreate.refresh('class','{$vo.c_clsnm}','sort','ipad')"
+                           class="{$vo.id == $Request.param.subclass || $vo.c_clsnm == $Request.param.subclass ?'current':''}">{$vo.c_clsnm}</a>
                         {/foreach}
-                    </ul>
+                    </div>
+                    <span class="menu-sub-r"><span id="casd">收起</span><div class="menu-sub-rimg"></div></span>
                 </div>
+
+                <div class="menu-color" style="border-bottom:1px solid #e5e5e5;">
+                    <span>壁纸色系：</span>
+
+                    <div class="menu-color-l">
+                        <div class="Bbox">
+                            <a href="javascript:asyncOpreate.refresh('color','all','sort','ipad')">全部</a>
+                        </div>
+                        {foreach name="colorList" item="vo" key="i"}
+                        <div class="Bbox">
+                            <div class="Bbox-1" style="background-color: {$vo.example}"></div>
+                            <a href="javascript:asyncOpreate.refresh('color','{$vo.color}','sort','ipad')">{$vo.color}</a>
+                        </div>
+                        {/foreach}
+                    </div>
+                </div>
+                <div class="menu-size" style="position:relative;">
+                    <span class="paixu">排序</span>
+                    <span class="paixui">:</span>
+
+                    <div class="menu-size-l" style="position:absolute; left:70px;">
+                        <a href="javascript:asyncOpreate.refresh('sort','date',null,'ipad')" class="{$Request.param.sort=='date'?'current':''}">最近更新</a>
+                        <a href="javascript:asyncOpreate.refresh('sort','sort',null,'ipad')" class="{$Request.param.sort!='date'?'current':''}">最多下载</a>
+                    </div>
+                </div>
+            </div><!--上标题-->
+
+            <div class="ipad-main-con">
+                <div class="cell-main1-left">
+                    <div class="IPad">
+                        {foreach name="iPadList" item="vo" key="i"}
+                        <div class="{$i%3!=0?'ipad-box':'ipad-box-1'}">
+                            <a href="{:url('/picture/ipad/id/'.$vo.id)}">
+                                <div class="ipad-box1">
+                                    <img src="{$vo.cutpic1}">
+                                </div>
+                                <div class="leth-newBox2">{$vo.nm}</div>
+                            </a>
+                        </div>
+                        {/foreach}
+                    </div>
+                    <div style="clear: both"></div>
+
+                    <div class="pagination pagination-centered">
+                        {$iPadList->render()}
+                    </div>
+                    <!--页码-->
+                </div>
+
+                <div class="cell-main1-right">
+                    <div class="right-top">
+                        <a href="http://taobao.com/">
+                            <div class="lo" style=" background-position:-4px -52px;"></div>
+                        </a>
+                        <span>下载排行</span>
+                    </div>
+                    <div class="left-and">             <!--壁纸开始-->
+                        <ul>
+                            {foreach name="iPadList" item="vo" key="i"}
+                            <li>
+                                <a href="{:url('/picture/ipad/id/'.$vo.id)}">
+                                    <div class="{$i+1<=3?'biaoqian2':'biaoqian'}"
+                                         style="background-color:{$i+1==1?'#e60012':($i+1==2?'#f39800':($i+1==3?'#8fc31f':''))}">
+                                        {$i+1}
+                                    </div>
+                                    <span class="R1">{$vo.nm}</span><span class="R2">{$vo.sort}</span>
+                                    <ul>
+                                        <li><img style="width:140px;height:104px;" src="{$vo.cutpic2}"></li>
+                                    </ul>
+                                </a>
+                            </li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div><!--ipad-main-con-->
+            <div class="main-bottom-logo" style="margin-top:20px;">
+                <span><a href="javascript:">关于我们</a> | <a href="javascript:">诚聘英才</a> | <a href="javascript:">商务合作</a> | <a
+                        href="javascript:">联系我们</a></span>
+
+                <div class="main-b-l1"></div>
+                <h5>CopyRight <span class="csp">&copy;</span> 2008-2018 杭州某某某某有限公司 版权所有</h5>
             </div>
 
-
-        </div><!--ipad-main-con-->
-        <div class="main-bottom-logo" style="margin-top:20px;">
-            <span><a href="javascript:">关于我们</a> | <a href="javascript:">诚聘英才</a> | <a href="javascript:">商务合作</a> | <a href="javascript:">联系我们</a></span>
-            <div class="main-b-l1"></div>
-            <h5>CopyRight <span class="csp">&copy;</span> 2008-2018 杭州某某某某有限公司 版权所有</h5>
-        </div>
-
-        <div class="up"></div>
+            <div class="up"></div>
 
 
-    </div><!--wrap-->
+        </div><!--wrap-->
+    </div>
 </div>
-<script src="js文件/asd.js" type="text/javascript"></script>
 </body>
 </html>

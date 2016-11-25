@@ -1,8 +1,8 @@
 <?php
 namespace app\index\model\pcmodel;
 
-use think\Model;
-class PCwenjian extends Model
+use app\index\model\common\BaseWenjianClass;
+class PCwenjian extends BaseWenjianClass
 {
     protected $table = "pc_wj_gj";
 
@@ -13,6 +13,7 @@ class PCwenjian extends Model
      */
     public function selectByBzId($id)
     {
-        return $this->where('bzid',$id)->order('fbl desc')->limit(1)->field('id,fbl,pic')->find();
+        return $this->where('bzid',$id)->order('fbl desc')->limit(1)->field('id,fbl,pic,bzid')->find();
     }
+
 }

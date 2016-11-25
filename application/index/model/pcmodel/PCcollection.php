@@ -26,7 +26,4 @@ class PCcollection extends BaseCollectionClass
         return $this->order('date desc')->limit(6)->select();
     }
 
-
-
-
 }

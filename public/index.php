@@ -13,7 +13,9 @@
 
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
+//绑定模块
+//define('BIND_MODULE','index');
 //server地址
-define('SERVER_PATH', 'http://10.0.10.221:8080/');
+define('SERVER_PATH', 'http://localhost:8080/');
 // 加载框架引导文件
 require __DIR__ . '/../thinkphp/start.php';

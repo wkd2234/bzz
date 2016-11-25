@@ -34,6 +34,4 @@ class MobileCollection extends BaseCollectionClass
     public function selectByWhereIndex($where){
         return $this->where($where)->order('sort desc')->limit(10)->select();
     }
-
-
 }

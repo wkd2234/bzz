@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EXAM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        #bg {
+            padding: 1px;
+            background-color: #08c;
+            text-align: center;
+        }
+
+        #pannel {
+            position: relative;
+            display: block;
+            width: 300px;
+            height: 200px;
+            background-color: #fff;
+            border-radius: 3px;
+            box-shadow: 1px 1px 10px #00967a, -1px -1px 10px #00967a;
+        }
+
+        #logo {
+            width: 300px;
+            height: 75px;
+            background-color: #2b542c;
+        }
+
+        .input-wrap {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #9d9d9d
+        }
+
+        .input-wrap input {
+            width: 200px;
+            height: 22px;
+            border: 1px #9d9d9d solid;
+            border-radius: 3px;
+            outline: none;
+        }
+        button{
+            margin-top: 10px;
+            width:80px;
+            height:22px;
+            background-color: #08c;
+            border: none;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<script src="jquery.min.js"></script>
+<body>
+<div id="bg">
+    <div id="pannel">
+        <div id="logo"></div>
+        <form action="./php/login.php" method="post">
+            <div class="input-wrap">
+                <label for="user">账号: </label><input id="user" name="user" type="text">
+            </div>
+            <div class="input-wrap">
+                <label for="psw">密码: </label><input id="psw" name="psw" type="password">
+            </div>
+            <button>登录</button>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    (function () {
+        $(window).resize(function () {
+            var $windowWidth = $(window).width();
+            var $windowHeight = $(window).height();
+            var $bg = $('#bg');
+            var $pannel = $('#pannel');
+
+            $bg.css({
+                width: $windowWidth + 'px',
+                height: $windowHeight + 'px',
+            })
+            $pannel.css({
+                marginLeft: $windowWidth / 2 - 150 + 'px',
+                marginTop: $windowHeight / 2 - 100 + 'px'
+            })
+        });
+        $(window).trigger('resize');
+        $('input').focus(function () {
+            $(this).css('border-color', '#08c')
+        })
+        $('input').blur(function () {
+            $(this).css('border-color', '#9d9d9d')
+        })
+    })()
+</script>
+</html>

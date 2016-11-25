@@ -14,8 +14,17 @@ return [
         'name' => '\w+',
     ],
     '[hello]'     => [
-        ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
+        ':id'   => ['index/index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
     ],
-
+    '[client]'=>[
+        ':client'=>['index/index']
+        ],
+//    ],
+//    'index'=>'index.php/index/index',
+//
+    '__alias__' =>  [
+        'index'  =>  'index/Index',
+        'picture'=>  'index/Picture'
+    ],
 ];
